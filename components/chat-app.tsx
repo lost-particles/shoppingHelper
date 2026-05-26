@@ -2,7 +2,19 @@
 
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
+type SpeechRecognitionLike = {
+  start: () => void;
+  stop: () => void;
+  abort: () => void;
+  onresult: ((event: { resultIndex: number; results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;
+  onerror: (() => void) | null;
+  onend: (() => void) | null;
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+};
 
 type Mode = "chat" | "agent";
 
@@ -66,7 +78,70 @@ export function ChatApp() {
   const [mode, setMode] = useState<Mode>("chat");
   const [input, setInput] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [isListening, setIsListening] = useState(false);
+  const [voiceSupported, setVoiceSupported] = useState(false);
+  const [autoSpeak, setAutoSpeak] = useState(false);
+  const [ttsSupported, setTtsSupported] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
+  const lastSpokenIdRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const w = window as unknown as {
+      SpeechRecognition?: new () => SpeechRecognitionLike;
+      webkitSpeechRecognition?: new () => SpeechRecognitionLike;
+    };
+    const SR = w.SpeechRecognition ?? w.webkitSpeechRecognition;
+    if (!SR) return;
+    const recognition = new SR();
+    recognition.continuous = false;
+    recognition.interimResults = true;
+    recognition.lang = "en-US";
+    recognition.onresult = (event) => {
+      let transcript = "";
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        transcript += event.results[i][0].transcript;
+      }
+      setInput(transcript);
+    };
+    recognition.onerror = () => setIsListening(false);
+    recognition.onend = () => setIsListening(false);
+    recognitionRef.current = recognition;
+    setVoiceSupported(true);
+    return () => {
+      recognition.abort();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if ("speechSynthesis" in window) {
+      setTtsSupported(true);
+    }
+    return () => {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+    };
+  }, []);
+
+  function toggleListening() {
+    const recognition = recognitionRef.current;
+    if (!recognition) return;
+    if (isListening) {
+      recognition.stop();
+      setIsListening(false);
+    } else {
+      setInput("");
+      try {
+        recognition.start();
+        setIsListening(true);
+      } catch {
+        // recognition may already be running; ignore.
+      }
+    }
+  }
 
   const transport = useMemo(
     () =>
@@ -81,8 +156,37 @@ export function ChatApp() {
 
   const isBusy = status === "streaming" || status === "submitted";
 
+  useEffect(() => {
+    if (!autoSpeak) {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+      }
+      return;
+    }
+    if (isBusy) return;
+    const last = messages[messages.length - 1];
+    if (!last || last.role !== "assistant") return;
+    if (lastSpokenIdRef.current === last.id) return;
+
+    const text = last.parts
+      .filter((p): p is { type: "text"; text: string } => p.type === "text")
+      .map((p) => p.text)
+      .join(" ")
+      .trim();
+    if (!text) return;
+
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 1.05;
+    window.speechSynthesis.speak(utterance);
+    lastSpokenIdRef.current = last.id;
+  }, [messages, isBusy, autoSpeak]);
+
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
     const text = input.trim();
     if (!text && !imageFile) return;
 
@@ -279,6 +383,35 @@ export function ChatApp() {
             >
               Image
             </button>
+            {voiceSupported && (
+              <button
+                type="button"
+                onClick={toggleListening}
+                disabled={isBusy}
+                className={`rounded-xl border px-3 py-2 text-sm font-medium transition disabled:opacity-40 ${
+                  isListening
+                    ? "animate-pulse border-[#FF5C28] bg-[#FF5C28] text-black"
+                    : "border-zinc-800 bg-zinc-950 text-zinc-200 hover:border-[#FF5C28] hover:text-[#FF5C28]"
+                }`}
+                title={isListening ? "Stop listening" : "Speak (push-to-talk)"}
+              >
+                {isListening ? "Listening…" : "Speak"}
+              </button>
+            )}
+            {ttsSupported && (
+              <button
+                type="button"
+                onClick={() => setAutoSpeak((v) => !v)}
+                className={`rounded-xl border px-3 py-2 text-sm font-medium transition ${
+                  autoSpeak
+                    ? "border-[#FF5C28] bg-[rgb(255_92_40/0.18)] text-[#FF5C28]"
+                    : "border-zinc-800 bg-zinc-950 text-zinc-200 hover:border-[#FF5C28] hover:text-[#FF5C28]"
+                }`}
+                title={autoSpeak ? "Stop reading replies aloud" : "Read replies aloud"}
+              >
+                {autoSpeak ? "Audio On" : "Audio Off"}
+              </button>
+            )}
             <input
               value={input}
               onChange={(event) => setInput(event.target.value)}

@@ -2,7 +2,19 @@
 
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
+type SpeechRecognitionLike = {
+  start: () => void;
+  stop: () => void;
+  abort: () => void;
+  onresult: ((event: { resultIndex: number; results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;
+  onerror: (() => void) | null;
+  onend: (() => void) | null;
+  continuous: boolean;
+  interimResults: boolean;
+  lang: string;
+};
 
 type Mode = "chat" | "agent";
 
@@ -66,7 +78,55 @@ export function ChatApp() {
   const [mode, setMode] = useState<Mode>("chat");
   const [input, setInput] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [isListening, setIsListening] = useState(false);
+  const [voiceSupported, setVoiceSupported] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const w = window as unknown as {
+      SpeechRecognition?: new () => SpeechRecognitionLike;
+      webkitSpeechRecognition?: new () => SpeechRecognitionLike;
+    };
+    const SR = w.SpeechRecognition ?? w.webkitSpeechRecognition;
+    if (!SR) return;
+    const recognition = new SR();
+    recognition.continuous = false;
+    recognition.interimResults = true;
+    recognition.lang = "en-US";
+    recognition.onresult = (event) => {
+      let transcript = "";
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        transcript += event.results[i][0].transcript;
+      }
+      setInput(transcript);
+    };
+    recognition.onerror = () => setIsListening(false);
+    recognition.onend = () => setIsListening(false);
+    recognitionRef.current = recognition;
+    setVoiceSupported(true);
+    return () => {
+      recognition.abort();
+    };
+  }, []);
+
+  function toggleListening() {
+    const recognition = recognitionRef.current;
+    if (!recognition) return;
+    if (isListening) {
+      recognition.stop();
+      setIsListening(false);
+    } else {
+      setInput("");
+      try {
+        recognition.start();
+        setIsListening(true);
+      } catch {
+        // recognition may already be running; ignore.
+      }
+    }
+  }
 
   const transport = useMemo(
     () =>
@@ -279,6 +339,21 @@ export function ChatApp() {
             >
               Image
             </button>
+            {voiceSupported && (
+              <button
+                type="button"
+                onClick={toggleListening}
+                disabled={isBusy}
+                className={`rounded-xl border px-3 py-2 text-sm font-medium transition disabled:opacity-40 ${
+                  isListening
+                    ? "animate-pulse border-[#FF5C28] bg-[#FF5C28] text-black"
+                    : "border-zinc-800 bg-zinc-950 text-zinc-200 hover:border-[#FF5C28] hover:text-[#FF5C28]"
+                }`}
+                title={isListening ? "Stop listening" : "Speak (push-to-talk)"}
+              >
+                {isListening ? "Listening…" : "Speak"}
+              </button>
+            )}
             <input
               value={input}
               onChange={(event) => setInput(event.target.value)}

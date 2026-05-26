@@ -1,72 +1,1179 @@
 [
   {
-    "id": "seed-chair-001",
-    "name": "Linen Slope Armchair (seed)",
+    "id": "chair-001",
+    "name": "Nieve 29.5'' Wide Upholstered Swivel Barrel Chair",
     "category": "chair",
-    "price": 489,
-    "dimensions": { "width": 32, "depth": 34, "height": 36, "unit": "in" },
-    "materials": ["linen", "solid oak", "foam cushion"],
-    "colors": ["oatmeal", "warm beige"],
-    "styles": ["scandi", "modern"],
-    "imageUrl": "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=800&q=80",
-    "description": "A low-slung armchair with a curved oak frame and soft linen upholstery. Reads warm but understated.",
-    "rating": 4.6,
-    "reviewCount": 142
+    "price": 379.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/20343219/resize-h400-w400%5Ecompr-r85/3740/374097305/Nieve+29.5%27%27+Wide+Upholstered+Swivel+Barrel+Chair.jpg",
+    "description": "Chairs & Seating > Accent Chairs",
+    "rating": 4.9,
+    "reviewCount": 18
   },
   {
-    "id": "seed-chair-002",
-    "name": "Velvet Reading Chair (seed)",
+    "id": "chair-002",
+    "name": "Bobbi Upholstered Swivel Barrel  Accent Arm Chair",
     "category": "chair",
-    "price": 629,
-    "dimensions": { "width": 30, "depth": 36, "height": 39, "unit": "in" },
-    "materials": ["velvet", "hardwood frame"],
-    "colors": ["rust", "burnt sienna"],
-    "styles": ["midcentury", "boho"],
-    "imageUrl": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80",
-    "description": "A high-backed armchair in deep rust velvet. The kind of chair you sink into for three hours and forget the time.",
+    "price": 316.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/44143443/resize-h400-w400%5Ecompr-r85/3978/397858839/Bobbi+Upholstered+Swivel+Barrel++Accent+Arm+Chair.jpg",
+    "description": "Chairs & Seating > Accent Chairs",
+    "rating": 4.5,
+    "reviewCount": 13
+  },
+  {
+    "id": "chair-003",
+    "name": "Bennett Upholstered Swivel Barrel Chair",
+    "category": "chair",
+    "price": 529,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/80222690/resize-h400-w400%5Ecompr-r85/3677/367723184/Bennett+Upholstered+Swivel+Barrel+Chair.jpg",
+    "description": "Chairs & Seating > Accent Chairs",
     "rating": 4.8,
+    "reviewCount": 2645
+  },
+  {
+    "id": "chair-004",
+    "name": "41“Chenille Oversized Chair With Ottoman - Plush Comfort and Style for Living Space",
+    "category": "chair",
+    "price": 329.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/20864122/resize-h600-w600%5Ecompr-r85/4404/440419823/41%E2%80%9CChenille+Oversized+Chair+With+Ottoman+-+Plush+Comfort+and+Style+for+Living+Space.jpg",
+    "description": "Chairs & Seating > Accent Chairs",
+    "rating": 4.3,
+    "reviewCount": 18
+  },
+  {
+    "id": "chair-005",
+    "name": "Hedwige 33\" W Modern Soft Wide Upholstered Striped Swivel Arm Accent Chair",
+    "category": "chair",
+    "price": 269.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/66968166/resize-h600-w600%5Ecompr-r85/3390/339094025/Hedwige+33%22+W+Modern+Soft+Wide+Upholstered+Striped+Swivel+Arm+Accent+Chair.jpg",
+    "description": "Chairs & Seating > Accent Chairs",
+    "rating": 4.5,
+    "reviewCount": 578
+  },
+  {
+    "id": "chair-006",
+    "name": "Applewold Upholstered Brown Faux Leather Swivel Barrel Chair with Solid Wood Base",
+    "category": "chair",
+    "price": 467.98,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/05883741/resize-h600-w600%5Ecompr-r85/2931/293133197/Applewold+Upholstered+Brown+Faux+Leather+Swivel+Barrel+Chair+with+Solid+Wood+Base.jpg",
+    "description": "Chairs & Seating > Accent Chairs",
+    "rating": 4.6,
+    "reviewCount": 240
+  },
+  {
+    "id": "chair-007",
+    "name": "41.73\" Chenille Compressed Sofa for Small Space, No Assembly Required",
+    "category": "chair",
+    "price": 162.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/36616787/resize-h600-w600%5Ecompr-r85/4450/445030255/41.73%22+Chenille+Compressed+Sofa+for+Small+Space%2C+No+Assembly+Required.jpg",
+    "description": "Chairs & Seating > Accent Chairs",
+    "rating": 4.5,
+    "reviewCount": 0
+  },
+  {
+    "id": "chair-008",
+    "name": "36.2\" Wide Upholstered Swivel Accent Armchair",
+    "category": "chair",
+    "price": 163.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/08121477/resize-h600-w600%5Ecompr-r85/3313/331321283/36.2%22+Wide+Upholstered+Swivel+Accent+Armchair.jpg",
+    "description": "Chairs & Seating > Accent Chairs",
+    "rating": 4.3,
+    "reviewCount": 430
+  },
+  {
+    "id": "rug-009",
+    "name": "Kokomo low pile handmade wool indoor wheat area rug",
+    "category": "rug",
+    "price": 2575.5,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/13850315/resize-h600-w600%5Ecompr-r85/4323/432352571/Kokomo+low+pile+handmade+wool+indoor+wheat+area+rug.jpg",
+    "description": "",
+    "rating": 4.5,
+    "reviewCount": 0
+  },
+  {
+    "id": "rug-010",
+    "name": "Picasso hand-knotted Wool/Silk Blue/Silver/Black Area Rug",
+    "category": "rug",
+    "price": 6800,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/39602348/resize-h600-w600%5Ecompr-r85/4323/432353210/Picasso+hand-knotted+Wool%2FSilk+Blue%2FSilver%2FBlack+Area+Rug.jpg",
+    "description": "",
+    "rating": 4.5,
+    "reviewCount": 0
+  },
+  {
+    "id": "rug-011",
+    "name": "Oxford hand-knotted Ghazni Wool Blue Area Rug",
+    "category": "rug",
+    "price": 2524.5,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/72627152/resize-h600-w600%5Ecompr-r85/4323/432352444/Oxford+hand-knotted+Ghazni+Wool+Blue+Area+Rug.jpg",
+    "description": "",
+    "rating": 4.5,
+    "reviewCount": 0
+  },
+  {
+    "id": "rug-012",
+    "name": "Mance Handmade Rug",
+    "category": "rug",
+    "price": 1149,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/88923418/resize-h600-w600%5Ecompr-r85/4117/411723078/Mance+Handmade+Rug.jpg",
+    "description": "",
+    "rating": 4.5,
+    "reviewCount": 0
+  },
+  {
+    "id": "rug-013",
+    "name": "Seraphine Coastal Flatweave Navy Indoor /  Outdoor Area Rug",
+    "category": "rug",
+    "price": 67.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/59004476/resize-h600-w600%5Ecompr-r85/3302/330239971/Seraphine+Coastal+Flatweave+Navy+Indoor+%2F++Outdoor+Area+Rug.jpg",
+    "description": "",
+    "rating": 4.6,
+    "reviewCount": 1545
+  },
+  {
+    "id": "rug-014",
+    "name": "Clarence Indoor Rug",
+    "category": "rug",
+    "price": 29.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/27099410/resize-h600-w600%5Ecompr-r85/2285/228559226/Clarence+Indoor+Rug.jpg",
+    "description": "",
+    "rating": 4.6,
+    "reviewCount": 2796
+  },
+  {
+    "id": "rug-015",
+    "name": "Floral Water Resistant Indoor Outdoor Rugs for Patios, Deck, Porch or Entryway",
+    "category": "rug",
+    "price": 71.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/71841527/resize-h600-w600%5Ecompr-r85/2266/226686507/Floral+Water+Resistant+Indoor+Outdoor+Rugs+for+Patios%2C+Deck%2C+Porch+or+Entryway.jpg",
+    "description": "",
+    "rating": 4.6,
+    "reviewCount": 995
+  },
+  {
+    "id": "rug-016",
+    "name": "Mendota Geometric Tan Indoor/Outdoor Area Rug",
+    "category": "rug",
+    "price": 125.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/05889551/resize-h600-w600%5Ecompr-r85/2250/225098297/Mendota+Geometric+Tan+Indoor%2FOutdoor+Area+Rug.jpg",
+    "description": "",
+    "rating": 4.7,
+    "reviewCount": 2492
+  },
+  {
+    "id": "desk-017",
+    "name": "Electric Standing Desk with Large Monitor Shelf & Drawers | Height-Adjustable Ergonomic Desk for Home or Office",
+    "category": "desk",
+    "price": 149.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/68945480/resize-h400-w400%5Ecompr-r85/4414/441425566/Electric+Standing+Desk+with+Large+Monitor+Shelf+%26+Drawers+%7C+Height-Adjustable+Ergonomic+Desk+for+Home+or+Office.jpg",
+    "description": "Desks",
+    "rating": 4.5,
+    "reviewCount": 219
+  },
+  {
+    "id": "desk-018",
+    "name": "Electric Adjustable Height  Standing Desk Computer Table with Drawers",
+    "category": "desk",
+    "price": 179.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/13873331/resize-h400-w400%5Ecompr-r85/4145/414576865/Electric+Adjustable+Height++Standing+Desk+Computer+Table+with+Drawers.jpg",
+    "description": "Desks",
+    "rating": 4.7,
+    "reviewCount": 611
+  },
+  {
+    "id": "desk-019",
+    "name": "Lilja Electric Standing Desk with Keyboard Tray",
+    "category": "desk",
+    "price": 149.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/44093737/resize-h400-w400%5Ecompr-r85/2591/259132657/Lilja+Electric+Standing+Desk+with+Keyboard+Tray+.jpg",
+    "description": "Desks",
+    "rating": 4.5,
+    "reviewCount": 390
+  },
+  {
+    "id": "desk-020",
+    "name": "Koree Standing & Height-Adjustable Desks",
+    "category": "desk",
+    "price": 97.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/34726870/resize-h600-w600%5Ecompr-r85/3375/337581444/Koree+Standing+%26+Height-Adjustable+Desks.jpg",
+    "description": "Desks",
+    "rating": 4.5,
+    "reviewCount": 3380
+  },
+  {
+    "id": "desk-021",
+    "name": "Caidence 2-Drawer Writing Desk with Solid Wood Legs",
+    "category": "desk",
+    "price": 111.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/11211829/resize-h600-w600%5Ecompr-r85/2493/249357011/Caidence+2-Drawer+Writing+Desk+with+Solid+Wood+Legs.jpg",
+    "description": "Desks",
+    "rating": 4.4,
+    "reviewCount": 1259
+  },
+  {
+    "id": "desk-022",
+    "name": "Elizabeth Adjustable Drafting Table",
+    "category": "desk",
+    "price": 126.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/87824599/resize-h600-w600%5Ecompr-r85/3899/389995485/Elizabeth+Adjustable+Drafting+Table.jpg",
+    "description": "Desks",
+    "rating": 4.1,
+    "reviewCount": 42
+  },
+  {
+    "id": "desk-023",
+    "name": "Barbarino L-Shaped Computer Desk",
+    "category": "desk",
+    "price": 206.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/04199140/resize-h600-w600%5Ecompr-r85/2782/278207287/Barbarino+L-Shaped+Computer+Desk.jpg",
+    "description": "Desks",
+    "rating": 4.6,
+    "reviewCount": 524
+  },
+  {
+    "id": "desk-024",
+    "name": "Lymon Adjustable L-Shaped Metal Base Computer Desk with Power Outlet",
+    "category": "desk",
+    "price": 157.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/21292219/resize-h600-w600%5Ecompr-r85/3748/374894142/Lymon+Adjustable+L-Shaped+Metal+Base+Computer+Desk+with+Power+Outlet.jpg",
+    "description": "Desks",
+    "rating": 4.6,
+    "reviewCount": 690
+  },
+  {
+    "id": "lamp-025",
+    "name": "Triplett 58'' Column Floor Lamp",
+    "category": "lamp",
+    "price": 66.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/88333758/resize-h400-w400%5Ecompr-r85/9941/99410907/Triplett+58%27%27+Column+Floor+Lamp.jpg",
+    "description": "Floor Lamps",
+    "rating": 4.6,
+    "reviewCount": 1401
+  },
+  {
+    "id": "lamp-026",
+    "name": "Lanett 82'' Antique Bronze Arched Floor Lamp",
+    "category": "lamp",
+    "price": 165.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/79276447/resize-h400-w400%5Ecompr-r85/2705/27053119/Lanett+82%27%27+Antique+Bronze+Arched+Floor+Lamp.jpg",
+    "description": "Floor Lamps",
+    "rating": 4.7,
+    "reviewCount": 1387
+  },
+  {
+    "id": "lamp-027",
+    "name": "Swope 50'' Column Floor Lamp",
+    "category": "lamp",
+    "price": 143.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/18566193/resize-h400-w400%5Ecompr-r85/6253/62535823/Swope+50%27%27+Column+Floor+Lamp.jpg",
+    "description": "Floor Lamps",
+    "rating": 4.5,
+    "reviewCount": 214
+  },
+  {
+    "id": "lamp-028",
+    "name": "Auron 72'' Torchiere Floor Lamp for Living Room LED Standing Reading Light for Bedroom with Glass Shade for Living Room ,Bulbs Included (Red Brown,Glass 2 Head)",
+    "category": "lamp",
+    "price": 93.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/92950403/resize-h600-w600%5Ecompr-r85/2858/285805206/Auron+72%27%27+Torchiere+Floor+Lamp+for+Living+Room+LED+Standing+Reading+Light+for+Bedroom+with+Glass+Shade+for+Living+Room+%2CBulbs+Included+%28Red+Brown%2CGlass+2+Head%29.jpg",
+    "description": "Floor Lamps",
+    "rating": 4.8,
+    "reviewCount": 110
+  },
+  {
+    "id": "lamp-029",
+    "name": "Modern 67\" Arc Floor Lamp with Curved Metal Shade, Weighted Marble Base & Foot Switch for Living Room or Bedroom",
+    "category": "lamp",
+    "price": 118.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/21166281/resize-h600-w600%5Ecompr-r85/3890/389008697/Modern+67%22+Arc+Floor+Lamp+with+Curved+Metal+Shade%2C+Weighted+Marble+Base+%26+Foot+Switch+for+Living+Room+or+Bedroom.jpg",
+    "description": "Floor Lamps",
+    "rating": 4.6,
+    "reviewCount": 5359
+  },
+  {
+    "id": "lamp-030",
+    "name": "72\" Victorian Tall Floor Lamp With White Swirl Glass Shade (bulb Included)",
+    "category": "lamp",
+    "price": 72.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/96252123/resize-h600-w600%5Ecompr-r85/3054/305470458/72%22+Victorian+Tall+Floor+Lamp+With+White+Swirl+Glass+Shade+%28bulb+Included%29.jpg",
+    "description": "Floor Lamps",
+    "rating": 4.7,
+    "reviewCount": 70
+  },
+  {
+    "id": "lamp-031",
+    "name": "Alecs 64'' Black Traditional Floor Lamp",
+    "category": "lamp",
+    "price": 122.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "traditional"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/25449007/resize-h600-w600%5Ecompr-r85/3661/366165973/Alecs+64%27%27+Black+Traditional+Floor+Lamp.jpg",
+    "description": "Floor Lamps",
+    "rating": 4.7,
+    "reviewCount": 448
+  },
+  {
+    "id": "lamp-032",
+    "name": "Crevan 65\" Dimmable Rattan Tree Floor Lamp With 3 Bulbs Included",
+    "category": "lamp",
+    "price": 64.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/29365009/resize-h600-w600%5Ecompr-r85/2815/281598939/Crevan+65%22+Dimmable+Rattan+Tree+Floor+Lamp+With+3+Bulbs+Included.jpg",
+    "description": "Floor Lamps",
+    "rating": 4.8,
+    "reviewCount": 726
+  },
+  {
+    "id": "sofa-033",
+    "name": "112.2\" Chenille Upholstered Sofa with Ottoman, Cloud-Like Modular Sectional Couch with Wooden Legs",
+    "category": "sofa",
+    "price": 780,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/61542006/resize-h600-w600%5Ecompr-r85/4186/418642611/112.2%22+Chenille+Upholstered+Sofa+with+Ottoman%2C+Cloud-Like+Modular+Sectional+Couch+with+Wooden+Legs.jpg",
+    "description": "Sofas",
+    "rating": 4.5,
+    "reviewCount": 0
+  },
+  {
+    "id": "sofa-034",
+    "name": "Brooklington 89'' Upholstered Sofa",
+    "category": "sofa",
+    "price": 409.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/54852718/resize-h600-w600%5Ecompr-r85/2733/273390357/Brooklington+89%27%27+Upholstered+Sofa.jpg",
+    "description": "Sofas",
+    "rating": 4.4,
+    "reviewCount": 2136
+  },
+  {
+    "id": "sofa-035",
+    "name": "Michelle 90\" Faux Leather Square Arm Sofa",
+    "category": "sofa",
+    "price": 1669.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/64440596/resize-h600-w600%5Ecompr-r85/2217/221799669/Michelle+90%22+Faux+Leather+Square+Arm+Sofa.jpg",
+    "description": "Sofas",
+    "rating": 4.7,
+    "reviewCount": 49
+  },
+  {
+    "id": "sofa-036",
+    "name": "Turin 135.5\" Chenille Fabric Upholstered 3Pc. Modular Sofa",
+    "category": "sofa",
+    "price": 3100,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/96288259/resize-h600-w600%5Ecompr-r85/4024/402424291/Turin+135.5%22+Chenille+Fabric+Upholstered+3Pc.+Modular+Sofa.jpg",
+    "description": "Sofas",
+    "rating": 4.5,
+    "reviewCount": 0
+  },
+  {
+    "id": "sofa-037",
+    "name": "96\" Sectional Couches For Living Room Modern Modular L-Shape Cloud Sofa Compression-Boneless Deep Seat Couch With Chaise",
+    "category": "sofa",
+    "price": 379.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/95785875/resize-h600-w600%5Ecompr-r85/4062/406216931/96%22+Sectional+Couches+For+Living+Room+Modern+Modular+L-Shape+Cloud+Sofa+Compression-Boneless+Deep+Seat+Couch+With+Chaise.jpg",
+    "description": "Sofas",
+    "rating": 4.4,
+    "reviewCount": 207
+  },
+  {
+    "id": "sofa-038",
+    "name": "3-Piece Pull-Out Sofa Bed With Reversible Storage Chaise",
+    "category": "sofa",
+    "price": 344,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/51505271/resize-h600-w600%5Ecompr-r85/3619/361961017/3-Piece+Pull-Out+Sofa+Bed+With+Reversible+Storage+Chaise.jpg",
+    "description": "Sofas",
+    "rating": 4.4,
+    "reviewCount": 127
+  },
+  {
+    "id": "sofa-039",
+    "name": "Omorfo 53.2'' Upholstered Convertible Sleeper Sofa",
+    "category": "sofa",
+    "price": 279.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/23886734/resize-h600-w600%5Ecompr-r85/2684/268470464/Omorfo+53.2%27%27+Upholstered+Convertible+Sleeper+Sofa.jpg",
+    "description": "Sofas",
+    "rating": 4.3,
+    "reviewCount": 461
+  },
+  {
+    "id": "sofa-040",
+    "name": "104\" 2-Piece Compression Boneless Corduroy L-Shaped Modular Sectional Sofa, 【Upgraded High-Density Foam】, No Assembly Required-（Left Hand,Dark Gray）",
+    "category": "sofa",
+    "price": 459.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/95887280/resize-h600-w600%5Ecompr-r85/3564/356438958/104%22+2-Piece+Compression+Boneless+Corduroy+L-Shaped+Modular+Sectional+Sofa%2C+%E3%80%90Upgraded+High-Density+Foam%E3%80%91%2C+No+Assembly+Required-%EF%BC%88Left+Hand%2CDark+Gray%EF%BC%89.jpg",
+    "description": "Sofas",
+    "rating": 4.2,
+    "reviewCount": 56
+  },
+  {
+    "id": "shelf-041",
+    "name": "Rotating Bookshelf Tower, 360° Spinning Bookcase Lazy Susan, Revolving Round Book Shelf Carousel, Vertical Spiral Corner Organizer, White",
+    "category": "shelf",
+    "price": 77.66,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/96891117/resize-h600-w600%5Ecompr-r85/4222/422277156/Rotating+Bookshelf+Tower%2C+360%C2%B0+Spinning+Bookcase+Lazy+Susan%2C+Revolving+Round+Book+Shelf+Carousel%2C+Vertical+Spiral+Corner+Organizer%2C+White.jpg",
+    "description": "Bookcases",
+    "rating": 4.2,
+    "reviewCount": 58
+  },
+  {
+    "id": "shelf-042",
+    "name": "Tamsin 70.25\" H x 25\" W x 16\" Metal & Tempered Glass Bookcase",
+    "category": "shelf",
+    "price": 379.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/31670640/resize-h600-w600%5Ecompr-r85/4135/413544743/Tamsin+70.25%22+H+x+25%22+W+x+16%22+Metal+%26+Tempered+Glass+Bookcase.jpg",
+    "description": "Bookcases",
+    "rating": 5,
+    "reviewCount": 6
+  },
+  {
+    "id": "shelf-043",
+    "name": "Modern Bookshelf, Storage Bookcase",
+    "category": "shelf",
+    "price": 139.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/32408228/resize-h600-w600%5Ecompr-r85/4329/432978365/Modern+Bookshelf%2C+Storage+Bookcase.jpg",
+    "description": "Bookcases",
+    "rating": 4.5,
+    "reviewCount": 0
+  },
+  {
+    "id": "shelf-044",
+    "name": "5-Tier 39.37\" W X 70.87\" H Modern Brown Wood Farmhouse Home Office Tall Bookshelf Bookcase Open Large Storage",
+    "category": "shelf",
+    "price": 116.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "farmhouse",
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/17576665/resize-h600-w600%5Ecompr-r85/2972/297209061/5-Tier+39.37%22+W+X+70.87%22+H+Modern+Brown+Wood+Farmhouse+Home+Office+Tall+Bookshelf+Bookcase+Open+Large+Storage.jpg",
+    "description": "Bookcases",
+    "rating": 4.5,
+    "reviewCount": 498
+  },
+  {
+    "id": "shelf-045",
+    "name": "Wakil 74\"H X 59\"W 6-Tier Large Wood Storage Bookcase",
+    "category": "shelf",
+    "price": 171.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/91421242/resize-h600-w600%5Ecompr-r85/3286/328671679/Wakil+74%22H+X+59%22W+6-Tier+Large+Wood+Storage+Bookcase.jpg",
+    "description": "Bookcases",
+    "rating": 4.6,
+    "reviewCount": 716
+  },
+  {
+    "id": "shelf-046",
+    "name": "Geng 74.3\"H X 47.2\"W Wood Double 6-Tier Standard Bookcase",
+    "category": "shelf",
+    "price": 159.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/84998576/resize-h600-w600%5Ecompr-r85/2864/286468706/Geng+74.3%22H+X+47.2%22W+Wood+Double+6-Tier+Standard+Bookcase.jpg",
+    "description": "Bookcases",
+    "rating": 4.6,
+    "reviewCount": 1035
+  },
+  {
+    "id": "shelf-047",
+    "name": "Emedio 70.9\" H Standard Bookcase",
+    "category": "shelf",
+    "price": 83.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/01599375/resize-h600-w600%5Ecompr-r85/3055/305511674/+Emedio+70.9%22+H+Standard+Bookcase++.jpg",
+    "description": "Bookcases",
+    "rating": 4.7,
+    "reviewCount": 137
+  },
+  {
+    "id": "shelf-048",
+    "name": "Maziah Triple Wide Industrial Etagere Bookcase",
+    "category": "shelf",
+    "price": 149.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "industrial"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/32425868/resize-h600-w600%5Ecompr-r85/1790/179080572/Maziah+Triple+Wide+Industrial+Etagere+Bookcase+.jpg",
+    "description": "Bookcases",
+    "rating": 4.8,
+    "reviewCount": 4012
+  },
+  {
+    "id": "table-049",
+    "name": "Single Coffee Table",
+    "category": "table",
+    "price": 589.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/92212337/resize-h400-w400%5Ecompr-r85/2679/267996517/Single+Coffee+Table.jpg",
+    "description": "Coffee Tables & End Tables > Coffee Tables",
+    "rating": 4.3,
     "reviewCount": 89
   },
   {
-    "id": "seed-lamp-001",
-    "name": "Brass Arc Floor Lamp (seed)",
-    "category": "lamp",
-    "price": 219,
-    "dimensions": { "width": 18, "depth": 60, "height": 70, "unit": "in" },
-    "materials": ["brass", "marble base", "linen shade"],
-    "colors": ["brass", "cream"],
-    "styles": ["midcentury", "modern"],
-    "imageUrl": "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=800&q=80",
-    "description": "Curves over a chair or sofa to cast warm reading light without taking up floor real estate.",
-    "rating": 4.5,
-    "reviewCount": 211
-  },
-  {
-    "id": "seed-rug-001",
-    "name": "Persian-Inspired Wool Rug 5x8 (seed)",
-    "category": "rug",
-    "price": 349,
-    "dimensions": { "width": 60, "depth": 96, "height": 1, "unit": "in" },
-    "materials": ["wool", "cotton backing"],
-    "colors": ["terracotta", "navy", "cream"],
-    "styles": ["boho", "traditional"],
-    "imageUrl": "https://images.unsplash.com/photo-1600166898405-da9535204843?w=800&q=80",
-    "description": "Hand-loomed wool with a faded terracotta field. Anchors a small room without making it feel busier.",
-    "rating": 4.7,
-    "reviewCount": 304
-  },
-  {
-    "id": "seed-shelf-001",
-    "name": "Walnut Ladder Bookshelf (seed)",
-    "category": "shelf",
-    "price": 279,
-    "dimensions": { "width": 24, "depth": 14, "height": 72, "unit": "in" },
-    "materials": ["walnut veneer", "steel"],
-    "colors": ["walnut"],
-    "styles": ["midcentury", "industrial"],
-    "imageUrl": "https://images.unsplash.com/photo-1594620302200-9a762244a156?w=800&q=80",
-    "description": "Narrow leaning bookshelf — five tiers, takes up two square feet of floor.",
+    "id": "table-050",
+    "name": "Hedda Single Coffee Table",
+    "category": "table",
+    "price": 419.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/03961179/resize-h400-w400%5Ecompr-r85/1766/176697880/Hedda+Single+Coffee+Table.jpg",
+    "description": "Coffee Tables & End Tables > Coffee Tables",
     "rating": 4.4,
-    "reviewCount": 167
+    "reviewCount": 17
+  },
+  {
+    "id": "table-051",
+    "name": "Aquia Single Coffee Table",
+    "category": "table",
+    "price": 114.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/28722656/resize-h400-w400%5Ecompr-r85/2161/216109093/Aquia+Single+Coffee+Table.jpg",
+    "description": "Coffee Tables & End Tables > Coffee Tables",
+    "rating": 4.3,
+    "reviewCount": 13
+  },
+  {
+    "id": "table-052",
+    "name": "Torron Lift Top Coffee Table with Storage",
+    "category": "table",
+    "price": 149.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/96909273/resize-h600-w600%5Ecompr-r85/2891/289195857/Torron+Lift+Top+Coffee+Table+with+Storage+.jpg",
+    "description": "Coffee Tables & End Tables > Coffee Tables",
+    "rating": 4.5,
+    "reviewCount": 2031
+  },
+  {
+    "id": "table-053",
+    "name": "Kishia White Round Coffee Table",
+    "category": "table",
+    "price": 729.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/58861477/resize-h600-w600%5Ecompr-r85/4135/413590778/Kishia+White+Round+Coffee+Table.jpg",
+    "description": "Coffee Tables & End Tables > Coffee Tables",
+    "rating": 4.5,
+    "reviewCount": 0
+  },
+  {
+    "id": "table-054",
+    "name": "31.5\" Modern Round Coffee Table With 360° Curved Sliding Door",
+    "category": "table",
+    "price": 119.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/23563461/resize-h600-w600%5Ecompr-r85/3139/313969146/31.5%22+Modern+Round+Coffee+Table+With+360%C2%B0+Curved+Sliding+Door.jpg",
+    "description": "Coffee Tables & End Tables > Coffee Tables",
+    "rating": 4.6,
+    "reviewCount": 856
+  },
+  {
+    "id": "table-055",
+    "name": "50.9 \" Triangle Glass Top Coffee Table with Solid Wood Base and Thickened Glass – Modern Living Room Accent Table",
+    "category": "table",
+    "price": 379.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/28330515/resize-h600-w600%5Ecompr-r85/3447/344740703/50.9+%22+Triangle+Glass+Top+Coffee+Table+with+Solid+Wood+Base+and+Thickened+Glass+%E2%80%93+Modern+Living+Room+Accent+Table.jpg",
+    "description": "Coffee Tables & End Tables > Coffee Tables",
+    "rating": 4.8,
+    "reviewCount": 165
+  },
+  {
+    "id": "table-056",
+    "name": "39.4\" Coffee Table with Storage for Living Room",
+    "category": "table",
+    "price": 94.99,
+    "dimensions": {
+      "width": 0,
+      "depth": 0,
+      "height": 0,
+      "unit": "in"
+    },
+    "materials": [],
+    "colors": [],
+    "styles": [
+      "modern"
+    ],
+    "imageUrl": "https://assets.wfcdn.com/im/96334803/resize-h600-w600%5Ecompr-r85/4012/401241125/39.4%22+Coffee+Table+with+Storage+for+Living+Room.jpg",
+    "description": "Coffee Tables & End Tables > Coffee Tables",
+    "rating": 4.6,
+    "reviewCount": 243
   }
 ]

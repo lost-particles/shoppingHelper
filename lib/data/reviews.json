@@ -1,82 +1,98 @@
 [
   {
-    "id": "r-seed-chair-001-a",
-    "productId": "seed-chair-001",
+    "id": "r-chair-001-a",
+    "productId": "chair-001",
     "rating": 5,
-    "title": "Disappears into our living room",
-    "body": "We have a small Cambridge apartment and this chair is the rare piece that doesn't make a room feel smaller. The oatmeal linen reads warm next to our wood floors. Comfortable for an hour of reading; firmer than a club chair.",
-    "ownerMonths": 8
-  },
-  {
-    "id": "r-seed-chair-001-b",
-    "productId": "seed-chair-001",
-    "rating": 4,
-    "title": "Great looking, less great for napping",
-    "body": "Beautiful chair, the linen has held up well to two cats. Honest note: the cushion is on the firm side. For reading or working from a tablet, it's perfect.",
-    "ownerMonths": 14
-  },
-  {
-    "id": "r-seed-chair-002-a",
-    "productId": "seed-chair-002",
-    "rating": 5,
-    "title": "Worth every penny",
-    "body": "Deeper than it looks in photos. I'm 6'1\" and can fully recline against the back. Velvet has shown no wear after a year.",
-    "ownerMonths": 12
-  },
-  {
-    "id": "r-seed-chair-002-b",
-    "productId": "seed-chair-002",
-    "rating": 4,
-    "title": "Color is more orange than photos suggest",
-    "body": "Beautiful chair but the 'rust' is more of a burnt orange in person. Worked great with our navy walls; would have clashed with red tones. Check it in real light first.",
-    "ownerMonths": 6
-  },
-  {
-    "id": "r-seed-lamp-001-a",
-    "productId": "seed-lamp-001",
-    "rating": 5,
-    "title": "Solid build, beautiful light",
-    "body": "Marble base is genuinely heavy — won't tip over on a thick rug. The arc reaches further than I expected; I have it next to a sofa lighting two reading spots.",
-    "ownerMonths": 9
-  },
-  {
-    "id": "r-seed-lamp-001-b",
-    "productId": "seed-lamp-001",
-    "rating": 3,
-    "title": "Bulb not included is the right call but...",
-    "body": "Lamp itself is great. They specify a max 60W bulb and I'd believe it — runs warm at the top. Use LEDs.",
+    "title": "Perfect reading chair, but runs firm",
+    "body": "Love this chair — the swivel is smooth and the shape is exactly as pictured. Honestly the firmness surprised me at first; the cushion is denser than a typical sofa seat. After two weeks it softened just enough and now I sit in it for hours. One note: the light grey fabric reads slightly more blue in my north-facing room than it does in the product photos, which have a warmer white balance. Still looks great, just not quite the warm cream I expected.",
     "ownerMonths": 3
   },
   {
-    "id": "r-seed-rug-001-a",
-    "productId": "seed-rug-001",
+    "id": "r-chair-001-b",
+    "productId": "chair-001",
     "rating": 5,
-    "title": "Texture and color are spot-on",
-    "body": "The terracotta is muted, not loud. Pile is short which is great with dining chairs sliding across. No shedding after a month.",
-    "ownerMonths": 1
+    "title": "Cat approved, assembly is one person-friendly",
+    "body": "Got this to replace a worn-out club chair and it is a serious upgrade. Assembly took about 25 minutes solo — the base screws on cleanly and everything lined up first try. My cat immediately claimed the top of the backrest, and so far the fabric is holding up with no snagging. The barrel shape means it sits slightly narrower than it looks online; measure your doorway before delivery because mine just barely made it through a 32-inch opening.",
+    "ownerMonths": 5
   },
   {
-    "id": "r-seed-rug-001-b",
-    "productId": "seed-rug-001",
-    "rating": 4,
-    "title": "Smaller than expected",
-    "body": "5x8 is the listed size but felt smaller in our 12x15 living room. Anchors a coffee table fine, won't fit under a sofa.",
-    "ownerMonths": 4
-  },
-  {
-    "id": "r-seed-shelf-001-a",
-    "productId": "seed-shelf-001",
+    "id": "r-chair-003-a",
+    "productId": "chair-003",
     "rating": 5,
-    "title": "Perfect for a studio",
-    "body": "Easy assembly, sturdy once anchored to the wall. Holds about 60 paperbacks across the five tiers.",
+    "title": "Worth the price — solidly built",
+    "body": "Went back and forth between this and a cheaper version; glad I paid the extra. The frame feels genuinely sturdy — no creaking when I shift weight or lean into the swivel. Fabric is a soft boucle that photographs warmer than in-person; in my living room under LED bulbs it is closer to a cool oatmeal. Not a complaint, just fair warning. Assembly is simple: attach the base, done.",
     "ownerMonths": 7
   },
   {
-    "id": "r-seed-shelf-001-b",
-    "productId": "seed-shelf-001",
-    "rating": 3,
-    "title": "Wall anchor is non-optional",
-    "body": "It leans, but it leans too easily — definitely anchor it. The included hardware is fine but you may want better drywall anchors depending on your wall.",
+    "id": "r-chair-003-b",
+    "productId": "chair-003",
+    "rating": 4,
+    "title": "Great chair, cushion could be thicker",
+    "body": "Really like the look and the swivel mechanism, but I wish the seat cushion had a bit more loft. After about an hour of reading I notice I am sitting lower than I expected — the cushion compresses more than I anticipated. Not a dealbreaker and it may break in over time. My dog has already claimed it when I leave the room; the upholstery has not pilled despite daily dog naps.",
+    "ownerMonths": 4
+  },
+  {
+    "id": "r-lamp-026-a",
+    "productId": "lamp-026",
+    "rating": 5,
+    "title": "Arc lamp done right — good heft, no tipping",
+    "body": "I was nervous about arc lamps tipping with cats around, but the base on this is genuinely heavy — I cannot tip it by pushing the pole. The antique bronze finish is richer in person than the photos suggest. Fits perfectly over a reading chair with the shade hanging about 18 inches above head height. Bulb is not included; I use a 9W warm LED and the shade diffuses it beautifully.",
+    "ownerMonths": 6
+  },
+  {
+    "id": "r-lamp-026-b",
+    "productId": "lamp-026",
+    "rating": 4,
+    "title": "Beautiful lamp, assembly instructions are vague",
+    "body": "Looks fantastic in my apartment and the arc length is perfect for a corner chair setup. The only friction was assembly: the instructions are a one-page diagram that skips a couple of steps. Took me 40 minutes instead of the 15 they imply. Once built it is very stable. The shade is slightly smaller than it looks in the listing — more of a spotlight effect than ambient glow, which works well for reading but not for room lighting.",
+    "ownerMonths": 2
+  },
+  {
+    "id": "r-rug-016-a",
+    "productId": "rug-016",
+    "rating": 5,
+    "title": "Surprisingly nice for the price",
+    "body": "Bought this skeptically at this price point and I am genuinely impressed. The pattern is sharp and the colors are accurate online — warm tan with a geometric border that reads neutral in my room. Low pile means it does not catch pet hair like a shag would; I can vacuum it in one pass. It does not have much padding so I added a thin rug pad, but that was expected.",
+    "ownerMonths": 8
+  },
+  {
+    "id": "r-rug-016-b",
+    "productId": "rug-016",
+    "rating": 4,
+    "title": "Good everyday rug, edges curl slightly at first",
+    "body": "Solid rug for the price. Pattern looks great and held its color after several cleanings. The only issue is the edges curled up for the first three weeks — I weighted the corners with furniture and they eventually laid flat. Color shifts a little depending on lighting; under my warm living room lights it looks more golden, in daylight it is a true tan. My dog does not bother it at all.",
     "ownerMonths": 11
+  },
+  {
+    "id": "r-shelf-048-a",
+    "productId": "shelf-048",
+    "rating": 5,
+    "title": "Exactly what a bookcase should be",
+    "body": "Solid construction, easy to assemble, and looks exactly as shown. The industrial finish suits my apartment without looking too rustic. I have three shelves loaded with books and it has not budged. The only assembly note: the back panel anchors are slightly fiddly — have a second person hold the frame while you secure them or it takes twice as long.",
+    "ownerMonths": 9
+  },
+  {
+    "id": "r-shelf-048-b",
+    "productId": "shelf-048",
+    "rating": 4,
+    "title": "Great look, shelves are a bit shallow",
+    "body": "Love the style and the price is right for this quality. The shelves are shallower than I expected — standard trade paperbacks fit fine but large-format art books hang over the edge a little. No stability issues at all. The metal color reads darker in the room than in the listing, which I actually prefer.",
+    "ownerMonths": 13
+  },
+  {
+    "id": "r-table-050-a",
+    "productId": "table-050",
+    "rating": 5,
+    "title": "Sturdy, stylish, and the right height",
+    "body": "Spent a lot of time picking a coffee table and this one delivered. The height is perfect for my sofa — not so low that you have to lean forward uncomfortably. The surface is real wood veneer and feels substantial. Assembly took about 45 minutes with two people; legs align cleanly. One thing to note: the finish shows fingerprints easily, so keep a microfiber cloth nearby.",
+    "ownerMonths": 6
+  },
+  {
+    "id": "r-table-050-b",
+    "productId": "table-050",
+    "rating": 4,
+    "title": "Beautiful table, delivery box was a squeeze",
+    "body": "Looks fantastic in person — the wood grain reads warmer than the photos. The flat-pack box is large and unwieldy; getting it up a narrow stairwell was a two-person job. Once assembled it is very stable and the finish has held up well to daily coffee mugs without coasters (though I would not push it). My only gripe is the legs add significant height so measure carefully if you have a low sofa.",
+    "ownerMonths": 4
   }
 ]

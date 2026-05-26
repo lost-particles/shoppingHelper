@@ -3,6 +3,8 @@
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ProductGrid } from "@/components/product-card";
+import type { Product } from "@/lib/data/types";
 
 type SpeechRecognitionLike = {
   start: () => void;
@@ -56,6 +58,28 @@ function MessagePart({
   if (part.type.startsWith("tool-")) {
     const label = part.type.replace("tool-", "");
     const state = "state" in part ? part.state : "unknown";
+
+    if (
+      part.type === "tool-searchProducts" &&
+      state === "output-available" &&
+      "output" in part &&
+      part.output &&
+      typeof part.output === "object" &&
+      "products" in part.output
+    ) {
+      const products = (part.output as { products: Product[] }).products;
+      return (
+        <div key={`${messageId}-tool-${index}`}>
+          <div className="rounded-lg border border-[#FF5C28]/30 bg-[rgb(255_92_40/0.12)] px-3 py-1.5 text-xs">
+            <span className="font-medium text-[#FF5C28]">
+              Found {products.length} picks
+            </span>
+          </div>
+          <ProductGrid products={products} />
+        </div>
+      );
+    }
+
     return (
       <div
         key={`${messageId}-tool-${index}`}
@@ -63,7 +87,7 @@ function MessagePart({
       >
         <div className="font-medium text-[#FF5C28]">Tool: {label}</div>
         <div className="mt-1 text-zinc-400">
-          {state === "input-available" && "Calling…"}
+          {state === "input-available" && "Calling..."}
           {state === "output-available" && "Done"}
           {state === "output-error" && "Error"}
         </div>
@@ -79,9 +103,18 @@ export function ChatApp() {
   const [input, setInput] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isListening, setIsListening] = useState(false);
-  const [voiceSupported, setVoiceSupported] = useState(false);
+  const [voiceSupported] = useState(() => {
+    if (typeof window === "undefined") return false;
+    const w = window as unknown as {
+      SpeechRecognition?: new () => SpeechRecognitionLike;
+      webkitSpeechRecognition?: new () => SpeechRecognitionLike;
+    };
+    return Boolean(w.SpeechRecognition ?? w.webkitSpeechRecognition);
+  });
   const [autoSpeak, setAutoSpeak] = useState(false);
-  const [ttsSupported, setTtsSupported] = useState(false);
+  const [ttsSupported] = useState(
+    () => typeof window !== "undefined" && "speechSynthesis" in window,
+  );
   const fileInputRef = useRef<HTMLInputElement>(null);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const lastSpokenIdRef = useRef<string | null>(null);
@@ -108,7 +141,6 @@ export function ChatApp() {
     recognition.onerror = () => setIsListening(false);
     recognition.onend = () => setIsListening(false);
     recognitionRef.current = recognition;
-    setVoiceSupported(true);
     return () => {
       recognition.abort();
     };
@@ -116,9 +148,6 @@ export function ChatApp() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if ("speechSynthesis" in window) {
-      setTtsSupported(true);
-    }
     return () => {
       if (typeof window !== "undefined" && "speechSynthesis" in window) {
         window.speechSynthesis.cancel();
@@ -220,13 +249,13 @@ export function ChatApp() {
         <div className="mx-auto flex max-w-5xl flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-medium uppercase tracking-wider text-[#FF5C28]">
-              Hackathon Starter
+              Wayfair Concierge
             </p>
             <h1 className="text-xl font-semibold tracking-tight text-white">
-              Chat + Agents on Subconscious
+              Shop by Conversation
             </h1>
             <p className="mt-1 text-sm text-zinc-400">
-              Wayfair · Subconscious · Baseten · Cloudflare
+              Tell me about your space. I&apos;ll find pieces that fit.
             </p>
           </div>
 
@@ -261,9 +290,9 @@ export function ChatApp() {
         <div className="mb-4 rounded-xl border border-zinc-800 bg-zinc-950 p-4 text-sm text-zinc-400">
           {mode === "chat" ? (
             <p>
-              <span className="font-medium text-[#FF5C28]">Chat mode</span> — fast
-              replies with basic tools. Attach an image for multimodal reasoning
-              (use data URLs; see{" "}
+              <span className="font-medium text-[#FF5C28]">Chat mode</span> -
+              fast replies with basic tools. Attach an image for multimodal
+              reasoning (use data URLs; see{" "}
               <code className="rounded bg-zinc-900 px-1 text-zinc-200">
                 lib/subconscious.ts
               </code>
@@ -271,9 +300,9 @@ export function ChatApp() {
             </p>
           ) : (
             <p>
-              <span className="font-medium text-[#FF5C28]">Agent mode</span> —
-              long-running multi-step agent with web search, background tasks, and
-              MCP tool stubs. Kick off research and let it run up to 30 tool
+              <span className="font-medium text-[#FF5C28]">Agent mode</span> -
+              long-running multi-step agent with web search, background tasks,
+              and MCP tool stubs. Kick off research and let it run up to 30 tool
               steps.
             </p>
           )}
@@ -286,13 +315,15 @@ export function ChatApp() {
                 Try something to get started
               </p>
               <ul className="mt-4 max-w-md space-y-2 text-sm">
-                <li>“What&apos;s the weather in Boston?”</li>
-                <li>“Calculate (17 * 23) + 100”</li>
-                <li>Attach a screenshot and ask what you see</li>
                 <li>
-                  Switch to Agent: “Research hackathon project ideas for retail
-                  AI”
+                  &quot;I need a reading chair for a small apartment, under
+                  $500&quot;
                 </li>
+                <li>
+                  &quot;Cozy reading nook, warm tones, around $800 total&quot;
+                </li>
+                <li>&quot;Is the Linen Slope Armchair good for cats?&quot;</li>
+                <li>&quot;Compare two midcentury floor lamps for me&quot;</li>
               </ul>
             </div>
           )}
@@ -333,7 +364,7 @@ export function ChatApp() {
           {isBusy && (
             <div className="flex items-center gap-2 text-sm text-zinc-400">
               <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-[#FF5C28]" />
-              {mode === "agent" ? "Agent running…" : "Thinking…"}
+              {mode === "agent" ? "Agent running..." : "Thinking..."}
             </div>
           )}
         </div>
@@ -364,7 +395,7 @@ export function ChatApp() {
             </div>
           )}
 
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <input
               ref={fileInputRef}
               type="file"
@@ -378,7 +409,7 @@ export function ChatApp() {
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
-              className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm font-medium text-zinc-200 hover:border-[#FF5C28] hover:text-[#FF5C28]"
+              className="shrink-0 rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm font-medium text-zinc-200 hover:border-[#FF5C28] hover:text-[#FF5C28]"
               title="Attach image for multimodal reasoning"
             >
               Image
@@ -388,21 +419,21 @@ export function ChatApp() {
                 type="button"
                 onClick={toggleListening}
                 disabled={isBusy}
-                className={`rounded-xl border px-3 py-2 text-sm font-medium transition disabled:opacity-40 ${
+                className={`shrink-0 rounded-xl border px-3 py-2 text-sm font-medium transition disabled:opacity-40 ${
                   isListening
                     ? "animate-pulse border-[#FF5C28] bg-[#FF5C28] text-black"
                     : "border-zinc-800 bg-zinc-950 text-zinc-200 hover:border-[#FF5C28] hover:text-[#FF5C28]"
                 }`}
                 title={isListening ? "Stop listening" : "Speak (push-to-talk)"}
               >
-                {isListening ? "Listening…" : "Speak"}
+                {isListening ? "Listening..." : "Speak"}
               </button>
             )}
             {ttsSupported && (
               <button
                 type="button"
                 onClick={() => setAutoSpeak((v) => !v)}
-                className={`rounded-xl border px-3 py-2 text-sm font-medium transition ${
+                className={`shrink-0 rounded-xl border px-3 py-2 text-sm font-medium transition ${
                   autoSpeak
                     ? "border-[#FF5C28] bg-[rgb(255_92_40/0.18)] text-[#FF5C28]"
                     : "border-zinc-800 bg-zinc-950 text-zinc-200 hover:border-[#FF5C28] hover:text-[#FF5C28]"
@@ -417,17 +448,17 @@ export function ChatApp() {
               onChange={(event) => setInput(event.target.value)}
               placeholder={
                 mode === "agent"
-                  ? "Kick off a long-running agent task…"
-                  : "Send a message…"
+                  ? "Kick off a long-running agent task..."
+                  : "Send a message..."
               }
-              className="flex-1 rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-[#FF5C28] focus:ring-2 focus:ring-[#FF5C28]/30"
+              className="min-w-0 flex-[1_1_16rem] rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-[#FF5C28] focus:ring-2 focus:ring-[#FF5C28]/30"
               disabled={isBusy}
             />
             {isBusy ? (
               <button
                 type="button"
                 onClick={() => stop()}
-                className="rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-2 text-sm font-medium text-zinc-200 hover:border-[#FF5C28]"
+                className="shrink-0 rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-2 text-sm font-medium text-zinc-200 hover:border-[#FF5C28]"
               >
                 Stop
               </button>
@@ -435,7 +466,7 @@ export function ChatApp() {
               <button
                 type="submit"
                 disabled={!input.trim() && !imageFile}
-                className="rounded-xl bg-[#FF5C28] px-4 py-2 text-sm font-medium text-black hover:bg-[#ff7347] disabled:opacity-40"
+                className="shrink-0 rounded-xl bg-[#FF5C28] px-4 py-2 text-sm font-medium text-black hover:bg-[#ff7347] disabled:opacity-40"
               >
                 Send
               </button>

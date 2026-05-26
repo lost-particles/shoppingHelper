@@ -130,6 +130,7 @@ function transform() {
           : "",
         rating: item.rating ?? 4.5,
         reviewCount: item.reviewCount ?? 0,
+        url: item.url,
       });
     }
   }

@@ -17,6 +17,7 @@ export interface Product {
   description: string;
   rating: number;
   reviewCount: number;
+  url?: string;
 }
 
 export interface Review {

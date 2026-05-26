@@ -2,6 +2,7 @@
 
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport, type UIMessage } from "ai";
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 type SpeechRecognitionLike = {
@@ -18,6 +19,141 @@ type SpeechRecognitionLike = {
 
 type Mode = "chat" | "agent";
 
+interface ProductData {
+  id: string;
+  name: string;
+  price: number;
+  rating: number;
+  reviewCount: number;
+  imageUrl: string;
+  description: string;
+  category: string;
+  styles: string[];
+  url?: string;
+}
+
+interface ShortlistEntry {
+  product: ProductData;
+  query: string;
+  savedAt: string;
+}
+
+const SHORTLIST_KEY = "wayfair-shortlist";
+
+function loadShortlist(): ShortlistEntry[] {
+  if (typeof window === "undefined") return [];
+  try {
+    return JSON.parse(localStorage.getItem(SHORTLIST_KEY) ?? "[]");
+  } catch {
+    return [];
+  }
+}
+
+function saveToShortlist(entry: ShortlistEntry) {
+  const list = loadShortlist();
+  if (list.some((e) => e.product.id === entry.product.id)) return;
+  localStorage.setItem(SHORTLIST_KEY, JSON.stringify([...list, entry]));
+  window.dispatchEvent(new Event("shortlist-updated"));
+}
+
+function removeFromShortlist(productId: string) {
+  const list = loadShortlist().filter((e) => e.product.id !== productId);
+  localStorage.setItem(SHORTLIST_KEY, JSON.stringify(list));
+  window.dispatchEvent(new Event("shortlist-updated"));
+}
+
+function StarRating({ rating }: { rating: number }) {
+  const full = Math.floor(rating);
+  const half = rating - full >= 0.5;
+  return (
+    <span className="flex items-center gap-0.5">
+      {Array.from({ length: 5 }, (_, i) => (
+        <span key={i} className={`text-xs ${i < full ? "text-amber-400" : i === full && half ? "text-amber-400/60" : "text-zinc-600"}`}>
+          ★
+        </span>
+      ))}
+      <span className="ml-1 text-xs text-zinc-400">{rating.toFixed(1)}</span>
+    </span>
+  );
+}
+
+function ProductCard({ product, query }: { product: ProductData; query: string }) {
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    const check = () => setSaved(loadShortlist().some((e) => e.product.id === product.id));
+    check();
+    window.addEventListener("shortlist-updated", check);
+    return () => window.removeEventListener("shortlist-updated", check);
+  }, [product.id]);
+
+  function toggle() {
+    if (saved) {
+      removeFromShortlist(product.id);
+    } else {
+      saveToShortlist({ product, query, savedAt: new Date().toISOString() });
+    }
+    setSaved(!saved);
+  }
+
+  const wayfairUrl = product.url ?? `https://www.wayfair.com/keyword.php?keyword=${encodeURIComponent(product.name)}`;
+
+  return (
+    <div className="flex w-52 flex-none flex-col overflow-hidden rounded-xl border border-zinc-700 bg-zinc-900 transition hover:border-zinc-500">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={product.imageUrl}
+        alt={product.name}
+        className="h-40 w-full object-cover"
+      />
+      <div className="flex flex-1 flex-col gap-2 p-3">
+        <p className="line-clamp-2 text-xs font-medium leading-snug text-zinc-100">
+          {product.name}
+        </p>
+        <div className="flex items-center justify-between">
+          <span className="text-base font-bold text-white">${product.price.toFixed(2)}</span>
+          {product.reviewCount > 0 && (
+            <span className="text-xs text-zinc-500">({product.reviewCount.toLocaleString()})</span>
+          )}
+        </div>
+        <StarRating rating={product.rating} />
+        <div className="mt-auto flex gap-1.5 pt-1">
+          <a
+            href={wayfairUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 rounded-lg border border-zinc-700 py-1.5 text-center text-xs font-medium text-zinc-300 transition hover:border-[#FF5C28] hover:text-[#FF5C28]"
+          >
+            View ↗
+          </a>
+          <button
+            onClick={toggle}
+            className={`rounded-lg border px-2.5 py-1.5 text-xs font-medium transition ${
+              saved
+                ? "border-[#FF5C28] bg-[rgb(255_92_40/0.15)] text-[#FF5C28]"
+                : "border-zinc-700 text-zinc-400 hover:border-[#FF5C28] hover:text-[#FF5C28]"
+            }`}
+            title={saved ? "Remove from shortlist" : "Save to shortlist"}
+          >
+            {saved ? "♥ Saved" : "♡ Save"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ProductCards({ products, query }: { products: ProductData[]; query: string }) {
+  if (!products.length) return null;
+  return (
+    <div className="mt-2 flex gap-3 overflow-x-auto pb-2">
+      {products.map((p) => (
+        <ProductCard key={p.id} product={p} query={query} />
+      ))}
+    </div>
+  );
+}
+
 function fileToDataUrl(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -31,10 +167,12 @@ function MessagePart({
   part,
   messageId,
   index,
+  lastUserQuery,
 }: {
   part: UIMessage["parts"][number];
   messageId: string;
   index: number;
+  lastUserQuery: string;
 }) {
   if (part.type === "text") {
     return (
@@ -54,16 +192,36 @@ function MessagePart({
   }
 
   if (part.type.startsWith("tool-")) {
-    const label = part.type.replace("tool-", "");
-    const state = "state" in part ? part.state : "unknown";
+    const toolName = part.type.replace("tool-", "");
+    const state = "state" in part ? (part as { state: string }).state : "unknown";
+    const output = "output" in part ? (part as { output: unknown }).output : undefined;
+
+    // Rich product cards for searchProducts
+    if (toolName === "searchProducts" && state === "output-available" && output) {
+      const result = output as { products?: ProductData[]; query?: string };
+      if (result.products?.length) {
+        return (
+          <ProductCards
+            products={result.products}
+            query={result.query ?? lastUserQuery}
+          />
+        );
+      }
+    }
+
     return (
       <div
         key={`${messageId}-tool-${index}`}
         className="mt-2 rounded-lg border border-[#FF5C28]/30 bg-[rgb(255_92_40/0.12)] px-3 py-2 text-xs"
       >
-        <div className="font-medium text-[#FF5C28]">Tool: {label}</div>
+        <div className="font-medium text-[#FF5C28]">
+          {toolName === "searchProducts" ? "🔍 Searching catalog" :
+           toolName === "getReviews" ? "💬 Fetching reviews" :
+           toolName === "getProductDetails" ? "📦 Loading details" :
+           `Tool: ${toolName}`}
+        </div>
         <div className="mt-1 text-zinc-400">
-          {state === "input-available" && "Calling…"}
+          {state === "input-available" && "Running…"}
           {state === "output-available" && "Done"}
           {state === "output-error" && "Error"}
         </div>
@@ -82,9 +240,18 @@ export function ChatApp() {
   const [voiceSupported, setVoiceSupported] = useState(false);
   const [autoSpeak, setAutoSpeak] = useState(false);
   const [ttsSupported, setTtsSupported] = useState(false);
+  const [shortlistCount, setShortlistCount] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const lastSpokenIdRef = useRef<string | null>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const update = () => setShortlistCount(loadShortlist().length);
+    update();
+    window.addEventListener("shortlist-updated", update);
+    return () => window.removeEventListener("shortlist-updated", update);
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -109,16 +276,12 @@ export function ChatApp() {
     recognition.onend = () => setIsListening(false);
     recognitionRef.current = recognition;
     setVoiceSupported(true);
-    return () => {
-      recognition.abort();
-    };
+    return () => { recognition.abort(); };
   }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if ("speechSynthesis" in window) {
-      setTtsSupported(true);
-    }
+    if ("speechSynthesis" in window) setTtsSupported(true);
     return () => {
       if (typeof window !== "undefined" && "speechSynthesis" in window) {
         window.speechSynthesis.cancel();
@@ -134,27 +297,21 @@ export function ChatApp() {
       setIsListening(false);
     } else {
       setInput("");
-      try {
-        recognition.start();
-        setIsListening(true);
-      } catch {
-        // recognition may already be running; ignore.
-      }
+      try { recognition.start(); setIsListening(true); } catch { /* already running */ }
     }
   }
 
   const transport = useMemo(
-    () =>
-      new DefaultChatTransport({
-        api: "/api/chat",
-        body: { mode },
-      }),
+    () => new DefaultChatTransport({ api: "/api/chat", body: { mode } }),
     [mode],
   );
 
   const { messages, sendMessage, status, error, stop } = useChat({ transport });
-
   const isBusy = status === "streaming" || status === "submitted";
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isBusy]);
 
   useEffect(() => {
     if (!autoSpeak) {
@@ -182,6 +339,12 @@ export function ChatApp() {
     lastSpokenIdRef.current = last.id;
   }, [messages, isBusy, autoSpeak]);
 
+  // Track the last user message text for product card context
+  const lastUserQuery = messages.findLast((m) => m.role === "user")
+    ?.parts.find((p) => p.type === "text")
+    // @ts-expect-error text is on text parts
+    ?.text ?? "";
+
   async function handleSubmit(event: React.FormEvent) {
     event.preventDefault();
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
@@ -196,17 +359,9 @@ export function ChatApp() {
     > = [];
 
     if (imageFile) {
-      parts.push({
-        type: "file",
-        mediaType: imageFile.type || "image/png",
-        url: await fileToDataUrl(imageFile),
-        filename: imageFile.name,
-      });
+      parts.push({ type: "file", mediaType: imageFile.type || "image/png", url: await fileToDataUrl(imageFile), filename: imageFile.name });
     }
-
-    if (text) {
-      parts.push({ type: "text", text });
-    }
+    if (text) parts.push({ type: "text", text });
 
     sendMessage({ parts });
     setInput("");
@@ -217,82 +372,73 @@ export function ChatApp() {
   return (
     <div className="flex min-h-full flex-col bg-black">
       <header className="border-b border-zinc-800 bg-black">
-        <div className="mx-auto flex max-w-5xl flex-col gap-4 px-4 py-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mx-auto flex max-w-5xl flex-col gap-4 px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-xs font-medium uppercase tracking-wider text-[#FF5C28]">
-              Hackathon Starter
+              Wayfair Shopping Concierge
             </p>
             <h1 className="text-xl font-semibold tracking-tight text-white">
-              Chat + Agents on Subconscious
+              Find your perfect piece
             </h1>
-            <p className="mt-1 text-sm text-zinc-400">
-              Wayfair · Subconscious · Baseten · Cloudflare
-            </p>
           </div>
 
-          <div className="flex rounded-full border border-zinc-800 bg-zinc-950 p-1">
-            <button
-              type="button"
-              onClick={() => setMode("chat")}
-              className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
-                mode === "chat"
-                  ? "bg-[#FF5C28] text-black"
-                  : "text-zinc-400 hover:text-white"
-              }`}
+          <div className="flex items-center gap-3">
+            <Link
+              href="/shortlist"
+              className="flex items-center gap-1.5 rounded-full border border-zinc-700 bg-zinc-950 px-4 py-1.5 text-sm font-medium text-zinc-300 transition hover:border-[#FF5C28] hover:text-[#FF5C28]"
             >
-              Chat
-            </button>
-            <button
-              type="button"
-              onClick={() => setMode("agent")}
-              className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
-                mode === "agent"
-                  ? "bg-[#FF5C28] text-black"
-                  : "text-zinc-400 hover:text-white"
-              }`}
-            >
-              Agent
-            </button>
+              ♡ Shortlist
+              {shortlistCount > 0 && (
+                <span className="rounded-full bg-[#FF5C28] px-1.5 py-0.5 text-xs font-bold text-black">
+                  {shortlistCount}
+                </span>
+              )}
+            </Link>
+
+            <div className="flex rounded-full border border-zinc-800 bg-zinc-950 p-1">
+              <button
+                type="button"
+                onClick={() => setMode("chat")}
+                className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
+                  mode === "chat" ? "bg-[#FF5C28] text-black" : "text-zinc-400 hover:text-white"
+                }`}
+              >
+                Chat
+              </button>
+              <button
+                type="button"
+                onClick={() => setMode("agent")}
+                className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
+                  mode === "agent" ? "bg-[#FF5C28] text-black" : "text-zinc-400 hover:text-white"
+                }`}
+              >
+                Agent
+              </button>
+            </div>
           </div>
         </div>
       </header>
 
       <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-4 py-6">
-        <div className="mb-4 rounded-xl border border-zinc-800 bg-zinc-950 p-4 text-sm text-zinc-400">
-          {mode === "chat" ? (
-            <p>
-              <span className="font-medium text-[#FF5C28]">Chat mode</span> — fast
-              replies with basic tools. Attach an image for multimodal reasoning
-              (use data URLs; see{" "}
-              <code className="rounded bg-zinc-900 px-1 text-zinc-200">
-                lib/subconscious.ts
-              </code>
-              ).
-            </p>
-          ) : (
-            <p>
-              <span className="font-medium text-[#FF5C28]">Agent mode</span> —
-              long-running multi-step agent with web search, background tasks, and
-              MCP tool stubs. Kick off research and let it run up to 30 tool
-              steps.
-            </p>
-          )}
-        </div>
-
         <div className="flex-1 space-y-4 overflow-y-auto rounded-2xl border border-zinc-800 bg-zinc-950 p-4">
           {messages.length === 0 && (
-            <div className="flex h-full min-h-[320px] flex-col items-center justify-center text-center text-zinc-500">
-              <p className="text-lg font-medium text-zinc-200">
-                Try something to get started
-              </p>
-              <ul className="mt-4 max-w-md space-y-2 text-sm">
-                <li>“What&apos;s the weather in Boston?”</li>
-                <li>“Calculate (17 * 23) + 100”</li>
-                <li>Attach a screenshot and ask what you see</li>
-                <li>
-                  Switch to Agent: “Research hackathon project ideas for retail
-                  AI”
-                </li>
+            <div className="flex h-full min-h-[360px] flex-col items-center justify-center text-center text-zinc-500">
+              <p className="text-lg font-medium text-zinc-200">What are you looking for?</p>
+              <ul className="mt-4 max-w-sm space-y-2 text-sm">
+                {[
+                  '"I need a reading chair under $400, warm tones"',
+                  '"Floor lamp that arcs over a sofa, not too bright"',
+                  '"Small rug for a 10x12 living room, boho vibe"',
+                  '"Compare the cheapest bookshelves you have"',
+                ].map((s) => (
+                  <li
+                    key={s}
+                    onClick={() => setInput(s.replace(/^"|"$/g, ""))}
+                    className="cursor-pointer rounded-lg px-3 py-1.5 hover:bg-zinc-800 hover:text-zinc-200"
+                  >
+                    {s}
+                  </li>
+                ))}
               </ul>
             </div>
           )}
@@ -303,7 +449,7 @@ export function ChatApp() {
               className={`flex ${message.role === "user" ? "justify-end" : "justify-start"}`}
             >
               <div
-                className={`max-w-[85%] rounded-2xl px-4 py-3 ${
+                className={`max-w-[90%] rounded-2xl px-4 py-3 ${
                   message.role === "user"
                     ? "bg-[#FF5C28] text-black"
                     : "border border-zinc-800 bg-zinc-900 text-zinc-100"
@@ -311,12 +457,10 @@ export function ChatApp() {
               >
                 <div
                   className={`mb-1 text-xs font-medium uppercase tracking-wide ${
-                    message.role === "user"
-                      ? "text-black/60"
-                      : "text-[#FF5C28]"
+                    message.role === "user" ? "text-black/60" : "text-[#FF5C28]"
                   }`}
                 >
-                  {message.role}
+                  {message.role === "user" ? "You" : "Concierge"}
                 </div>
                 {message.parts.map((part, index) => (
                   <MessagePart
@@ -324,6 +468,7 @@ export function ChatApp() {
                     part={part}
                     messageId={message.id}
                     index={index}
+                    lastUserQuery={lastUserQuery}
                   />
                 ))}
               </div>
@@ -333,9 +478,10 @@ export function ChatApp() {
           {isBusy && (
             <div className="flex items-center gap-2 text-sm text-zinc-400">
               <span className="inline-block h-2 w-2 animate-pulse rounded-full bg-[#FF5C28]" />
-              {mode === "agent" ? "Agent running…" : "Thinking…"}
+              {mode === "agent" ? "Agent searching…" : "Thinking…"}
             </div>
           )}
+          <div ref={messagesEndRef} />
         </div>
 
         {error && (
@@ -347,13 +493,10 @@ export function ChatApp() {
         <form onSubmit={handleSubmit} className="mt-4 space-y-3">
           {imageFile && (
             <div className="flex items-center gap-2 text-sm text-zinc-400">
-              <span>
-                Image:{" "}
-                <span className="text-[#FF5C28]">{imageFile.name}</span>
-              </span>
+              <span>Image: <span className="text-[#FF5C28]">{imageFile.name}</span></span>
               <button
                 type="button"
-                className="text-[#FF5C28] hover:text-[#ff7347] hover:underline"
+                className="text-[#FF5C28] hover:underline"
                 onClick={() => {
                   setImageFile(null);
                   if (fileInputRef.current) fileInputRef.current.value = "";
@@ -370,18 +513,15 @@ export function ChatApp() {
               type="file"
               accept="image/*"
               className="hidden"
-              onChange={(event) => {
-                const file = event.target.files?.[0];
-                if (file) setImageFile(file);
-              }}
+              onChange={(e) => { const f = e.target.files?.[0]; if (f) setImageFile(f); }}
             />
             <button
               type="button"
               onClick={() => fileInputRef.current?.click()}
               className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2 text-sm font-medium text-zinc-200 hover:border-[#FF5C28] hover:text-[#FF5C28]"
-              title="Attach image for multimodal reasoning"
+              title="Attach room photo"
             >
-              Image
+              📷
             </button>
             {voiceSupported && (
               <button
@@ -393,9 +533,9 @@ export function ChatApp() {
                     ? "animate-pulse border-[#FF5C28] bg-[#FF5C28] text-black"
                     : "border-zinc-800 bg-zinc-950 text-zinc-200 hover:border-[#FF5C28] hover:text-[#FF5C28]"
                 }`}
-                title={isListening ? "Stop listening" : "Speak (push-to-talk)"}
+                title={isListening ? "Stop listening" : "Speak"}
               >
-                {isListening ? "Listening…" : "Speak"}
+                {isListening ? "🔴" : "🎤"}
               </button>
             )}
             {ttsSupported && (
@@ -407,19 +547,15 @@ export function ChatApp() {
                     ? "border-[#FF5C28] bg-[rgb(255_92_40/0.18)] text-[#FF5C28]"
                     : "border-zinc-800 bg-zinc-950 text-zinc-200 hover:border-[#FF5C28] hover:text-[#FF5C28]"
                 }`}
-                title={autoSpeak ? "Stop reading replies aloud" : "Read replies aloud"}
+                title={autoSpeak ? "Mute" : "Read replies aloud"}
               >
-                {autoSpeak ? "Audio On" : "Audio Off"}
+                {autoSpeak ? "🔊" : "🔇"}
               </button>
             )}
             <input
               value={input}
-              onChange={(event) => setInput(event.target.value)}
-              placeholder={
-                mode === "agent"
-                  ? "Kick off a long-running agent task…"
-                  : "Send a message…"
-              }
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="Describe what you're looking for…"
               className="flex-1 rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-2 text-sm text-white outline-none placeholder:text-zinc-500 focus:border-[#FF5C28] focus:ring-2 focus:ring-[#FF5C28]/30"
               disabled={isBusy}
             />

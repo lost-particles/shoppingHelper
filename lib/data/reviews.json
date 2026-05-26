@@ -1,0 +1,82 @@
+[
+  {
+    "id": "r-seed-chair-001-a",
+    "productId": "seed-chair-001",
+    "rating": 5,
+    "title": "Disappears into our living room",
+    "body": "We have a small Cambridge apartment and this chair is the rare piece that doesn't make a room feel smaller. The oatmeal linen reads warm next to our wood floors. Comfortable for an hour of reading; firmer than a club chair.",
+    "ownerMonths": 8
+  },
+  {
+    "id": "r-seed-chair-001-b",
+    "productId": "seed-chair-001",
+    "rating": 4,
+    "title": "Great looking, less great for napping",
+    "body": "Beautiful chair, the linen has held up well to two cats. Honest note: the cushion is on the firm side. For reading or working from a tablet, it's perfect.",
+    "ownerMonths": 14
+  },
+  {
+    "id": "r-seed-chair-002-a",
+    "productId": "seed-chair-002",
+    "rating": 5,
+    "title": "Worth every penny",
+    "body": "Deeper than it looks in photos. I'm 6'1\" and can fully recline against the back. Velvet has shown no wear after a year.",
+    "ownerMonths": 12
+  },
+  {
+    "id": "r-seed-chair-002-b",
+    "productId": "seed-chair-002",
+    "rating": 4,
+    "title": "Color is more orange than photos suggest",
+    "body": "Beautiful chair but the 'rust' is more of a burnt orange in person. Worked great with our navy walls; would have clashed with red tones. Check it in real light first.",
+    "ownerMonths": 6
+  },
+  {
+    "id": "r-seed-lamp-001-a",
+    "productId": "seed-lamp-001",
+    "rating": 5,
+    "title": "Solid build, beautiful light",
+    "body": "Marble base is genuinely heavy — won't tip over on a thick rug. The arc reaches further than I expected; I have it next to a sofa lighting two reading spots.",
+    "ownerMonths": 9
+  },
+  {
+    "id": "r-seed-lamp-001-b",
+    "productId": "seed-lamp-001",
+    "rating": 3,
+    "title": "Bulb not included is the right call but...",
+    "body": "Lamp itself is great. They specify a max 60W bulb and I'd believe it — runs warm at the top. Use LEDs.",
+    "ownerMonths": 3
+  },
+  {
+    "id": "r-seed-rug-001-a",
+    "productId": "seed-rug-001",
+    "rating": 5,
+    "title": "Texture and color are spot-on",
+    "body": "The terracotta is muted, not loud. Pile is short which is great with dining chairs sliding across. No shedding after a month.",
+    "ownerMonths": 1
+  },
+  {
+    "id": "r-seed-rug-001-b",
+    "productId": "seed-rug-001",
+    "rating": 4,
+    "title": "Smaller than expected",
+    "body": "5x8 is the listed size but felt smaller in our 12x15 living room. Anchors a coffee table fine, won't fit under a sofa.",
+    "ownerMonths": 4
+  },
+  {
+    "id": "r-seed-shelf-001-a",
+    "productId": "seed-shelf-001",
+    "rating": 5,
+    "title": "Perfect for a studio",
+    "body": "Easy assembly, sturdy once anchored to the wall. Holds about 60 paperbacks across the five tiers.",
+    "ownerMonths": 7
+  },
+  {
+    "id": "r-seed-shelf-001-b",
+    "productId": "seed-shelf-001",
+    "rating": 3,
+    "title": "Wall anchor is non-optional",
+    "body": "It leans, but it leans too easily — definitely anchor it. The included hardware is fine but you may want better drywall anchors depending on your wall.",
+    "ownerMonths": 11
+  }
+]

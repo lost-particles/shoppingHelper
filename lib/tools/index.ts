@@ -1,5 +1,6 @@
 import { tool } from "ai";
 import { z } from "zod";
+import { shoppingTools } from "./shopping";
 
 /**
  * Example tools for the hackathon starter.
@@ -98,8 +99,7 @@ export const runLongTask = tool({
 });
 
 export const chatTools = {
-  getWeather,
-  calculate,
+  ...shoppingTools,
 };
 
 export const agentTools = {

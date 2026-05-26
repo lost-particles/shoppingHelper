@@ -103,18 +103,7 @@ export function ChatApp() {
   const [input, setInput] = useState("");
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [isListening, setIsListening] = useState(false);
-  const [voiceSupported] = useState(() => {
-    if (typeof window === "undefined") return false;
-    const w = window as unknown as {
-      SpeechRecognition?: new () => SpeechRecognitionLike;
-      webkitSpeechRecognition?: new () => SpeechRecognitionLike;
-    };
-    return Boolean(w.SpeechRecognition ?? w.webkitSpeechRecognition);
-  });
   const [autoSpeak, setAutoSpeak] = useState(false);
-  const [ttsSupported] = useState(
-    () => typeof window !== "undefined" && "speechSynthesis" in window,
-  );
   const fileInputRef = useRef<HTMLInputElement>(null);
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
   const lastSpokenIdRef = useRef<string | null>(null);
@@ -186,10 +175,11 @@ export function ChatApp() {
   const isBusy = status === "streaming" || status === "submitted";
 
   useEffect(() => {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
+      return;
+    }
     if (!autoSpeak) {
-      if (typeof window !== "undefined" && "speechSynthesis" in window) {
-        window.speechSynthesis.cancel();
-      }
+      window.speechSynthesis.cancel();
       return;
     }
     if (isBusy) return;
@@ -414,35 +404,31 @@ export function ChatApp() {
             >
               Image
             </button>
-            {voiceSupported && (
-              <button
-                type="button"
-                onClick={toggleListening}
-                disabled={isBusy}
-                className={`shrink-0 rounded-xl border px-3 py-2 text-sm font-medium transition disabled:opacity-40 ${
-                  isListening
-                    ? "animate-pulse border-[#FF5C28] bg-[#FF5C28] text-black"
-                    : "border-zinc-800 bg-zinc-950 text-zinc-200 hover:border-[#FF5C28] hover:text-[#FF5C28]"
-                }`}
-                title={isListening ? "Stop listening" : "Speak (push-to-talk)"}
-              >
-                {isListening ? "Listening..." : "Speak"}
-              </button>
-            )}
-            {ttsSupported && (
-              <button
-                type="button"
-                onClick={() => setAutoSpeak((v) => !v)}
-                className={`shrink-0 rounded-xl border px-3 py-2 text-sm font-medium transition ${
-                  autoSpeak
-                    ? "border-[#FF5C28] bg-[rgb(255_92_40/0.18)] text-[#FF5C28]"
-                    : "border-zinc-800 bg-zinc-950 text-zinc-200 hover:border-[#FF5C28] hover:text-[#FF5C28]"
-                }`}
-                title={autoSpeak ? "Stop reading replies aloud" : "Read replies aloud"}
-              >
-                {autoSpeak ? "Audio On" : "Audio Off"}
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={toggleListening}
+              disabled={isBusy}
+              className={`shrink-0 rounded-xl border px-3 py-2 text-sm font-medium transition disabled:opacity-40 ${
+                isListening
+                  ? "animate-pulse border-[#FF5C28] bg-[#FF5C28] text-black"
+                  : "border-zinc-800 bg-zinc-950 text-zinc-200 hover:border-[#FF5C28] hover:text-[#FF5C28]"
+              }`}
+              title={isListening ? "Stop listening" : "Speak (push-to-talk)"}
+            >
+              {isListening ? "Listening..." : "Speak"}
+            </button>
+            <button
+              type="button"
+              onClick={() => setAutoSpeak((value) => !value)}
+              className={`shrink-0 rounded-xl border px-3 py-2 text-sm font-medium transition ${
+                autoSpeak
+                  ? "border-[#FF5C28] bg-[rgb(255_92_40/0.18)] text-[#FF5C28]"
+                  : "border-zinc-800 bg-zinc-950 text-zinc-200 hover:border-[#FF5C28] hover:text-[#FF5C28]"
+              }`}
+              title={autoSpeak ? "Stop reading replies aloud" : "Read replies aloud"}
+            >
+              {autoSpeak ? "Audio On" : "Audio Off"}
+            </button>
             <input
               value={input}
               onChange={(event) => setInput(event.target.value)}
